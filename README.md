@@ -1,6 +1,6 @@
 # uncork
 
-Go port of [Corkscrew](https://github.com/bryanpkc/corkscrew): a tool for
+Go port of [corkscrew](https://github.com/bryanpkc/corkscrew): a tool for
 tunneling SSH through HTTP proxies. This is a usable exercise, but nothing in
 excess of what `nc -X ...` could do.
 
