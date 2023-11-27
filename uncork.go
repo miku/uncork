@@ -1,4 +1,7 @@
-// uncork: Tunnel TCP connections through HTTP proxies
+// uncork: Tunnel TCP connections through HTTP proxies, mostly a drop-in
+// replace for corkscrew.
+//
+// usage: uncork <proxyhost> <proxyport> <desthost> <destport>
 package main
 
 import (
@@ -8,6 +11,8 @@ import (
 	"log"
 	"net"
 	"os"
+	"strconv"
+	"strings"
 	"sync"
 	"time"
 )
@@ -29,13 +34,15 @@ type CloseReader interface {
 	CloseRead() error
 }
 
+// stickyErrWriter can keep errors around, cf. https://youtu.be/yG-UaBJXZ80?t=33m50s
 type stickyErrWriter struct {
 	w   io.Writer
 	err *error
 }
 
+// Write implements the io.Writer interface.
 func (sew *stickyErrWriter) Write(p []byte) (n int, err error) {
-	if sew.err != nil {
+	if *sew.err != nil {
 		return 0, *sew.err
 	}
 	n, err = sew.w.Write(p)
@@ -95,6 +102,22 @@ func main() {
 	fmt.Fprintf(w, "\r\n")
 	if *w.err != nil {
 		log.Fatal(*w.err)
+	}
+	var buf = make([]byte, 12) // == len("HTTP/1.1 200")
+	_, err = pconn.Read(buf)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fields := strings.Fields(string(buf))
+	if len(fields) != 2 {
+		log.Fatal("error: invalid response from proxy")
+	}
+	status, err := strconv.Atoi(fields[1])
+	if err != nil {
+		log.Fatal("error: could not parse proxy http status")
+	}
+	if status >= 300 {
+		log.Fatalf("error: got http %v from proxy", status)
 	}
 	var wg sync.WaitGroup
 	wg.Add(2)
