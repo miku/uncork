@@ -4,6 +4,14 @@ Go port of [corkscrew](https://github.com/bryanpkc/corkscrew): a tool for
 tunneling SSH through HTTP proxies. This is a usable exercise, but nothing in
 excess of what `nc -X ...` could do.
 
+## Installation
+
+```
+$ go install github.com/miku/uncork@latest
+```
+
+## Usage
+
 ```
 uncork 0.1.0 (martin.czygan@gmail.com)
 usage: uncork <proxyhost> <proxyport> <desthost> <destport>
@@ -34,3 +42,4 @@ Host github.com
   User git
   ProxyCommand nc -X connect -x proxy_ip:port %h %p
 ```
+
