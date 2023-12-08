@@ -18,7 +18,7 @@ import (
 )
 
 var (
-	Version = "0.1.0"
+	Version = "0.1.2"
 	usage   = fmt.Sprintf(`uncork %s (martin.czygan@gmail.com)
 usage: uncork <proxyhost> <proxyport> <desthost> <destport>`, Version)
 	timeout = flag.Duration("T", 30*time.Second, "connect timeout")
