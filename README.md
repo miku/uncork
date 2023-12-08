@@ -4,6 +4,24 @@ Partial port of [corkscrew](https://github.com/bryanpkc/corkscrew) to Go. A
 tool for tunneling SSH through HTTP proxies. This is a usable exercise, but
 nothing in excess of what `nc -X ...` could do.
 
+Available where Go is available:
+
+* aix
+* android
+* darwin
+* dragonfly
+* freebsd
+* illumos
+* ios
+* js
+* linux
+* netbsd
+* openbsd
+* plan9
+* solaris
+* wasip1
+* windows
+
 ## Installation
 
 ```
