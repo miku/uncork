@@ -1,8 +1,9 @@
 # uncork
 
 Partial port of [corkscrew](https://github.com/bryanpkc/corkscrew) to Go. A
-tool for tunneling SSH through HTTP proxies. This is a usable exercise, but
-nothing in excess of what `nc -X ...` could do.
+tool for tunneling SSH (or other application layer protocols) through HTTP
+proxies. This is a usable exercise, but nothing in excess of what `nc -X ...`
+could do.
 
 Available where Go is available:
 
