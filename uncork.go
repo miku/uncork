@@ -1,5 +1,5 @@
 // uncork: Tunnel TCP connections through HTTP proxies, mostly a drop-in
-// replace for corkscrew.
+// replacement for corkscrew.
 //
 // usage: uncork <proxyhost> <proxyport> <desthost> <destport>
 package main
