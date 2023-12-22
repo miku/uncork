@@ -44,6 +44,8 @@ Host github.com
   ProxyCommand uncork proxy.mycompany.com 3128 github.com 22
 ```
 
+## Alternatives
+
 Alternative, via [/dev/tcp](https://tldp.org/LDP/abs/html/devref1.html):
 
 ```
@@ -62,3 +64,4 @@ Host github.com
   ProxyCommand nc -X connect -x proxy_ip:port %h %p
 ```
 
+More at: [https://trofi.github.io/posts/295-ssh-over-https.html](https://trofi.github.io/posts/295-ssh-over-https.html)
